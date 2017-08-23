@@ -27,7 +27,7 @@ router.get('/posts', (req, res) => {
                     res.send(err);
                 }
                 else if(result.length){
-                    res.json(result);
+                    res.json(result);                   
                 }else{
                     res.send('No documents found');
                 }
@@ -37,5 +37,35 @@ router.get('/posts', (req, res) => {
         }
     });
 });
+
+//add student
+router.post('/addstudent',(req,res)=>{   
+    
+    MongoClient.connect(URL,(err,db)=>{
+      if(err){
+        console.log(`Unable to connect to the server`,err);
+      }
+      else{
+        console.log("Connection established");
+        
+        var collection = db.collection('students');
+        
+        var {name,street,city,sex,gpa} = req.body;
+        var student1 = {name,street,city,sex,age,gpa};
+        console.log(student1);
+        
+        collection.insert([student1],(err,result)=>{
+          if(err){
+            console.log(`Unable to connect to the server`,err);
+          }
+          else{
+            res.redirect('posts');
+          }
+          
+          db.close();
+        });
+      }
+    });
+  });
 
 module.exports = router;

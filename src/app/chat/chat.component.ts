@@ -35,13 +35,13 @@ export class ChatComponent implements OnInit,OnDestroy {
 
   @HostListener('window:focus', ['$event'])
   handleFocusOn(event: Event){
-    console.log('window focused');
+    console.log('window focused',Date.now());
     this.chatService.focus();
   }
 
   @HostListener('window:blur', ['$event'])
   handleBlurt(event: Event){
-    console.log('window left');
+    console.log('window left',Date.now());
     this.chatService.leave();
   }
 

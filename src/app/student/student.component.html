@@ -1,0 +1,21 @@
+<div>
+  <form [formGroup]="studentForm" (ngSubmit)="create()">
+    <input type="text"  formControlName = "name" name="name" required id="name" placeholder="name"/>
+    <input type="text"  formControlName = "street" name="street" required id="street" placeholder="street"/>
+    <input type="text"  formControlName = "city" name="city" required id="city" placeholder="city"/>
+    <input type="text"  formControlName = "sex" name="sex" required id="sex" placeholder="sex"/>
+    <input type="text"  formControlName = "gpa" name="gpa" required id="gpa" placeholder="gpa"/>
+    <input type="text"  formControlName = "age" name="age" required id="age" placeholder="age"/>
+    <input type="submit">
+  </form>
+
+  <!-- <form [student]="student" (ngSubmit)="create()">
+      <input type="text"  [(ngModel)] = "student.name" name="name" required id="name" placeholder="name"/>
+      <input type="text"  [(ngModel)] = "student.street" name="street" required id="street" placeholder="street"/>
+      <input type="text"  [(ngModel)] = "student.city" name="city" required id="city" placeholder="city"/>
+      <input type="text"  [(ngModel)] = "student.sex" name="sex" required id="sex" placeholder="sex"/>
+      <input type="text"  [(ngModel)] = "student.gpa" name="gpa" required id="gpa" placeholder="gpa"/>
+      <input type="text"  [(ngModel)] = "student.age" name="age" required id="age" placeholder="age"/>
+      <input type="submit">
+    </form> -->
+</div>

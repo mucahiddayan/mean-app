@@ -1,6 +1,6 @@
 <div *ngFor="let message of messages">
-  {{message.text}}
-  {{message.type}}
+  <span attr.data-time={{message.time}} attr.data-type={{message.type}}>{{message.text}}</span>
+  
 </div>
 <input [(ngModel)]="message"  /><button (click)="sendMessage()">Send</button>
 

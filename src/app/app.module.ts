@@ -1,16 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule , ReactiveFormsModule } from '@angular/forms';
 
 import {RouterModule} from '@angular/router';
 import {HttpModule} from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { PostsComponent } from './posts/posts.component';
-import {PostsService} from './posts.service';
+import { PostsService } from './posts.service';
 import { StudentsService } from './students.service';
 import { ChatService } from './chat.service';
 import { ChatComponent } from './chat/chat.component';
+import { StudentComponent } from './student/student.component';
 
 const ROUTES = [
   /* {
@@ -18,6 +19,10 @@ const ROUTES = [
     redirectTo: 'posts',
     pathMatch: 'full'
   }, */
+  {
+    path:'addstudent',
+    component: StudentComponent
+  },
   {
     path:'posts',
     component: PostsComponent
@@ -32,12 +37,14 @@ const ROUTES = [
   declarations: [
     AppComponent,
     PostsComponent,
-    ChatComponent
+    ChatComponent,
+    StudentComponent
   ],
   imports: [
     BrowserModule,
     HttpModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(ROUTES),
   ],
   providers: [PostsService, StudentsService, ChatService],

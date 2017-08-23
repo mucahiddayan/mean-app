@@ -62,7 +62,12 @@ io.on('connection',(socket)=>{
     });
 
     socket.on('add-message',(message)=>{
-        io.emit('message',{type:'new-message',text:message});
+        io.emit('message',{type:'new-message',text:message,time:Date.now()});
+    });
+
+    socket.on('student-created',(student)=>{
+        console.log(student);
+        io.emit('new-student',student);
     });
 });
 
