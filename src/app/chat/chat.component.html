@@ -1,0 +1,7 @@
+<div *ngFor="let message of messages">
+  {{message.text}}
+  {{message.type}}
+</div>
+<input [(ngModel)]="message"  /><button (click)="sendMessage()">Send</button>
+
+<a routerLink="../" >zurück</a>  

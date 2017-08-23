@@ -4,11 +4,20 @@ const path      = require('path');
 const http      = require('http');
 const bodyParser= require('body-parser');
 
+
+const app       = express();
+
+/**
+* Create a HTTP Server
+*/
+const server  = http.createServer(app);
+
+const io        = require('socket.io')(server);
+
 // Get our api routes
 const api       = require('./server/routes/api');
 
 
-const app       = express();
 
 // Parser for POST Data
 app.use(bodyParser.json());
@@ -31,10 +40,31 @@ app.get('*',(req,res)=>{
 const port = process.env.PORT || '3000';
 app.set('port',port);
 
+
+
 /**
-* Create a HTTP Server
-*/
-const server  = http.createServer(app);
+ * SOCKET.IO
+ */
+
+io.on('connection',(socket)=>{
+    console.log('user connected');
+
+    socket.on('disconnect',()=>{
+        console.log('user disconnected');
+    });
+
+    socket.on('leave',()=>{
+        console.log('user left the tab');
+    });
+
+    socket.on('focus',()=>{
+        console.log('user is back');
+    });
+
+    socket.on('add-message',(message)=>{
+        io.emit('message',{type:'new-message',text:message});
+    });
+});
 
 /** 
 * Listen in provided port, on all network interfaces
