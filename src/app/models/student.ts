@@ -1,11 +1,11 @@
 export class Student{
     
-    public id: number;
-    public name: string;
-    public sex: string;
-    public city: string;
-    public age: number;
-    public street:string;
+    id: number;
+    name: string;
+    sex: string;
+    city: string;
+    age: number;
+    street:string;
     gpa: string;
     
 }

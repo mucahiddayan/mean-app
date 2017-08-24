@@ -11,25 +11,34 @@
   export class StudentComponent implements OnInit {
     // @Input() student:Student;
     
-    studentForm = new FormGroup({
+    /* studentForm = new FormGroup({
       name : new FormControl(),
       age: new FormControl(),
       city: new FormControl(),
       sex : new FormControl(),
       street : new FormControl(),
       gpa: new FormControl()
-    });
-    
+    }); */
+    student:Student;
     
 
     constructor(private studentsService: StudentsService) { }
     
     ngOnInit() {
+      this.student = new Student();
+      this.student.id = 0;
+      this.student.name = 'Maria';
+      this.student.sex = 'F';
+      this.student.age = 23;
+      this.student.gpa = 'uk';
+      this.student.city = 'Berlin';
+      this.student.street = 'Berlinerstr.';
     }
     
-    create(){
-      // this.studentsService.create();
-      console.log(this.studentForm);
+    create(val,valid){
+      this.studentsService.create(val);
+      // console.log(this.studentForm);
+      console.log(val,valid);
     }
     
   }

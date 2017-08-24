@@ -20,7 +20,7 @@ const ROUTES = [
     pathMatch: 'full'
   }, */
   {
-    path:'addstudent',
+    path:'newstudent',
     component: StudentComponent
   },
   {

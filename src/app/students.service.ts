@@ -5,7 +5,7 @@ import {Observable} from 'rxjs/Rx';
 
 import * as io from 'socket.io-client';
 
-const URL = 'http://localhost:3000/addstudent'
+const URL = 'http://localhost:3000/api/addstudent'
 
 @Injectable()
 export class StudentsService implements OnInit {
@@ -13,18 +13,22 @@ export class StudentsService implements OnInit {
   constructor(private http: Http) { }
 
   ngOnInit(){ 
-    this.socket = io("http://localhost:3000");   
+       
   }
 
-  create(student: Student): Observable<Student[]>{
-    let bodyString = JSON.stringify(student); // Stringify payload
+  create(student: Student): void{
+    console.log('studentsservice.create called',student);
+    this.socket = io("http://localhost:3000");
+    // this.socket.emit('student-created',student);
+    // let bodyString = JSON.stringify(student); // Stringify payload
     let headers    = new Headers({ 'Content-Type': 'application/json' });
     let options    = new RequestOptions({ headers: headers });
-    return this.http.post(URL, student, options) // ...using post request
+    this.http.post(URL, student, options) // ...using post request
     .map((res:Response) => {
-      res.json();
-      this.socket.emit('student-created');
-    }) // ...and calling .json() on the response to return data
-    .catch((error:any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
+      res.json();      
+    }).subscribe(()=>{
+      this.socket.emit('student-created',student); 
+    }); // ...and calling .json() on the response to return data
+    // .catch((error:any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
   }
 }
