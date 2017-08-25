@@ -1,7 +1,8 @@
-<div class="container">
-  <div class="row" *ngFor="let post of posts">
+<div class="container" *ngIf="posts">
+  <div class="row" *ngFor="let post of posts" attr.data-id = "{{ post._id }}">
+    <span (click)="delete(post._id)">X</span>
     <div class="card card-block">
-      <h4 class="card-title">{{ post.student }}</h4>
+      <h4 class="card-title">{{ post.name }}</h4>
       <p class="card-text">{{post.street}}</p>
       <p class="card-text">{{post.sex}}</p>
       <p class="card-text">{{post.city}}</p>

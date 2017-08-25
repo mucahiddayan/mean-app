@@ -69,6 +69,11 @@ io.on('connection',(socket)=>{
         console.log(student);
         io.emit('new-student',student);
     });
+
+    socket.on('student-deleted',(id)=>{
+        console.log('student-deleted emited');
+        io.emit('delete-student',id);
+    });
 });
 
 /** 
