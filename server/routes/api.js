@@ -84,6 +84,7 @@ router.post('/addstudent',(req,res)=>{
     });
 });
 
+//DELETE STUDENT
 router.post('/deletestudent',(req,res)=>{   
     MongoClient.connect(URL,(err,db)=>{
         if(err){
@@ -96,6 +97,33 @@ router.post('/deletestudent',(req,res)=>{
             console.log(req.body);
             
             collection.remove({"_id":ObjectId(req.body._id)},(err,result)=>{
+                if(err){
+                    console.log(`Unable to connect to the server`,err);
+                }
+                else{
+                    console.log('deleted successfully');
+                    res.redirect('posts');
+                }
+                
+                db.close();
+            });
+        }
+    });
+});
+
+//UPDATE STUDENT
+router.post('/updatestudent',(req,res)=>{   
+    MongoClient.connect(URL,(err,db)=>{
+        if(err){
+            console.log(`Unable to connect to the server`,err);
+        }
+        else{
+            console.log("Connection established");
+            
+            var collection = db.collection('students');
+            var {name,street,city,sex,gpa,age} = req.body;
+            var student1 = {name,street,city,sex,age,gpa,_id};
+            collection.update({"_id":ObjectId(req.body._id)},{$set:student1},(err,result)=>{
                 if(err){
                     console.log(`Unable to connect to the server`,err);
                 }
