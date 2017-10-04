@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
 });
 
 // Get all posts
-router.get('/posts', (req, res) => {
+router.get('/students', (req, res) => {
     MongoClient.connect(URL,(err,db)=>{
         if(err){
             console.log(`Unable to connect to the server`,err);
@@ -28,7 +28,8 @@ router.get('/posts', (req, res) => {
                     res.send(err);
                 }
                 else if(result.length){
-                    res.json(result);                   
+                    res.json(result);
+                    console.log("Burasi:",result);                              
                 }else{
                     res.send('No documents found');
                 }

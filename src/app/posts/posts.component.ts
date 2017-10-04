@@ -10,7 +10,7 @@ const URL = 'http://localhost:3000';
   styleUrls: ['./posts.component.css']
 })
 export class PostsComponent implements OnInit {
-  posts: any = [];
+  posts:any = [];
   private socket;
   constructor(private postsService: PostsService,private studentsService: StudentsService) { }
 
@@ -24,7 +24,7 @@ export class PostsComponent implements OnInit {
       this.posts.splice(index,1); 
     });
     // retrieve posts from API
-    this.postsService.getAllPosts().subscribe(posts => this.posts = posts);
+    this.postsService.getAllPosts().subscribe(posts => {this.posts = typeof posts == 'undefined'?[]:posts;console.log(posts);});
   }
 
   delete(id: string){    

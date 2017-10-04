@@ -10,12 +10,12 @@ export class PostsService {
 
   // Get all posts from API
   getAllPosts(){
-    return this.http.get('api/posts').map(res=>{
+    return this.http.get('api/students').map(res=>{
       try{
-        res.json();
+        return res.json();
       }
       catch(e){
-        console.log(e)
+        console.log(e);
       }
     });
   }

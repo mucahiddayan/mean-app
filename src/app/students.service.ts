@@ -39,7 +39,7 @@ export class StudentsService implements OnInit {
     let URL = 'http://localhost:3000/api/deletestudent';
     this.http.post(URL, {_id:id},options) // ...using post request
     .map((res:Response) => {
-      res.json();      
+      console.log(res);    
     }).subscribe(()=>{
       this.socket.emit('student-deleted',id);
     }); // 
