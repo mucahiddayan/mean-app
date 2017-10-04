@@ -2,12 +2,11 @@
   <div class="row" *ngFor="let post of posts" attr.data-id = "{{ post._id }}">
     <span (click)="delete(post._id)">X</span>
     <div class="card card-block">
-      <h4 class="card-title">{{ post.name }}</h4>
+      <h4 class="card-title"><a target="_blank" href="https://www.google.de/search?q={{ post.name }}">{{ post.name }}</a></h4>
       <p class="card-text">{{post.street}}</p>
       <p class="card-text">{{post.sex}}</p>
       <p class="card-text">{{post.city}}</p>
-      <a href="#" class="card-link">Card link</a>
-      <a href="#" class="card-link">Another link</a>
+      <img id="img"><button (click)="loadImg(post.name,$event)">Load Img</button>
     </div>
   </div>
   <a routerLink="../">zurück</a>  

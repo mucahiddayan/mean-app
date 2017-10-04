@@ -27,7 +27,7 @@ export class StudentsService implements OnInit {
     
     this.http.post(URL, student, options) // ...using post request
     .map((res:Response) => {
-      res.json();      
+      console.log(res);   
     }).subscribe(()=>{
       this.socket.emit('student-created',student); 
     }); // ...and calling .json() on the response to return data

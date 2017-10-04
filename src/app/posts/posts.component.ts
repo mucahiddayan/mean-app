@@ -32,4 +32,18 @@ export class PostsComponent implements OnInit {
     console.log(id);       
   }
 
+  loadImg(src,event){
+    let img = event.target.previousSibling;
+    console.log(src,img);
+    fetch(`https://source.unsplash.com/user/${src}/1600x900`,{mode:'no-cors'})
+    .then(function(response) {
+      return response.blob();
+    })
+    .then(function(imageBlob) {
+      let src = window.URL.createObjectURL(imageBlob);
+      img.src = src;
+      console.log(src);
+    });
+  }
+
 }
